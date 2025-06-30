@@ -73,22 +73,14 @@ template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a)
         return parent[node]=findUlp(parent[node]);
     }
 
-    void findUnionByRank(int u,int v) {
-        int u_ulp=findUlp(u);
-        int v_ulp=findUlp(v);
-
-        if(u_ulp==v_ulp) return;
-
-        int urank=rank[u_ulp],vrank=rank[v_ulp];
-
-        if(urank==vrank) {
-            parent[v_ulp]=u_ulp;
-            rank[u_ulp]++;
-        } else if(urank>vrank) {
-            parent[v_ulp]=u_ulp;
-        } else {
-            parent[u_ulp]=v_ulp;
-        }
+    void findUnionByRank(int u, int v) {
+         int ulp = findUlp(u);
+         int vlp = findUlp(v);
+         if(ulp == vlp) return;
+         //greater rank becomes parent
+         if(rank[ulp] < rank[vlp])  swap(ulp, vlp);
+         else rank[ulp]++;
+         parent[vlp] = ulp;
     }
     
     void findUnionBySize(int u,int v) {  //it stores the size as rank gets distorted while path compression
