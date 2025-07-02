@@ -79,7 +79,7 @@ template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a)
          if(ulp == vlp) return;
          //greater rank becomes parent
          if(rank[ulp] < rank[vlp])  swap(ulp, vlp);
-         else rank[ulp]++;
+         if(rank[ulp] == rank[vlp]) rank[ulp]++;
          parent[vlp] = ulp;
     }
     
