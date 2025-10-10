@@ -55,10 +55,10 @@ template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a)
 
   
  
- class DisjointSet { //tells whether u and v belong to same component in constant time O(1)--//
+ class DSU { //tells whether u and v belong to same component in constant time O(1)--//
   public:
    vector<int> rank,parent,size;
-    DisjointSet(int n) {
+    DSU(int n) {
        rank.resize(n+1,0);
        parent.resize(n+1);
        size.resize(n+1,1);
